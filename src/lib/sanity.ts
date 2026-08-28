@@ -20,7 +20,11 @@ export const client = createClient({
   projectId: projectId ?? "placeholder",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
   apiVersion: "2024-10-01",
-  useCdn: true,
+  // Read token, used only while building. It is deliberately not NEXT_PUBLIC_,
+  // so it is never bundled into anything the browser downloads.
+  token: process.env.SANITY_READ_TOKEN,
+  // A token and the CDN cache do not mix; every read here happens at build time.
+  useCdn: !process.env.SANITY_READ_TOKEN,
 });
 
 function fetchOr<T>(fallback: T, query: string, params: QueryParams = {}): Promise<T> {
