@@ -1,0 +1,35 @@
+import type { ReactNode } from "react";
+
+/**
+ * The heading block every section on the home page repeats
+ * (Figma 0:219 for Podcast, 0:34 for Study groups, 0:256 for Happenings):
+ * an oversized italic title on the left, an intro column on the right.
+ */
+export function SectionHeader({
+  title,
+  eyebrow,
+  intro,
+  action,
+}: {
+  title: ReactNode;
+  eyebrow?: string;
+  intro?: ReactNode;
+  action?: ReactNode;
+}) {
+  return (
+    <div className="glass-panel flex w-full flex-col gap-6 rounded-r-[20px] px-6 pt-5 pb-[13px] lg:flex-row lg:items-center lg:gap-[60px] lg:px-20">
+      <h2 className="w-full text-[52px] leading-none font-bold italic tracking-[-1.92px] sm:text-[72px] lg:w-[390px] lg:shrink-0 lg:text-[96px]">
+        {title}
+      </h2>
+      <div className="flex min-w-0 flex-1 flex-col">
+        {eyebrow && (
+          <p className="max-w-[650px] py-2 text-[20px] leading-tight font-bold italic tracking-[-0.4px]">
+            {eyebrow}
+          </p>
+        )}
+        {intro}
+        {action}
+      </div>
+    </div>
+  );
+}

@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Type — the design uses Instrument Sans throughout, mostly bold italic. */
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Surfaces */
+  --color-page: #f5f5f5;
+  --color-ink: #000000;
+  --color-muted: #6b6b6b;
+  --color-rule: rgba(0, 0, 0, 0.15);
+  --color-card: #ffffff;
+
+  /* The floating nav pill */
+  --color-glass: rgba(245, 245, 245, 0.3);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* The translucent panel used by the nav, the cards and the footer (Figma 0:290, 0:45, 0:281). */
+@utility glass-panel {
+  background: var(--color-glass);
+  backdrop-filter: blur(12px);
+  filter: drop-shadow(-2px -2px 3px rgba(0, 0, 0, 0.05))
+    drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.05));
 }

@@ -86,9 +86,9 @@ export type Page = {
 
 export type SiteSettings = {
   siteName?: string;
-  heroHeading?: Locale<string>;
-  heroIntroShort?: Locale<string>;
-  heroIntroFull?: Locale<string>;
+  sectionEyebrow?: Locale<string>;
+  sectionIntroShort?: Locale<string>;
+  sectionIntroFull?: Locale<string>;
   footerBlurb?: Locale<string>;
   email?: string;
   instagramUrl?: string;
@@ -135,7 +135,7 @@ export const getSiteSettings = () =>
   fetchOr<SiteSettings | null>(
     placeholderSettings,
     `*[_type == "siteSettings"][0] {
-      siteName, heroHeading, heroIntroShort, heroIntroFull,
+      siteName, sectionEyebrow, sectionIntroShort, sectionIntroFull,
       footerBlurb, email, instagramUrl, defaultSeo{ogTitle, ogDescription, ogImage}
     }`,
   );

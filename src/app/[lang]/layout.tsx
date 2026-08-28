@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Instrument_Sans } from "next/font/google";
 import "../globals.css";
 import { asLang, LANGS } from "@/lib/i18n";
 import { getSiteSettings } from "@/lib/sanity";
@@ -12,6 +13,12 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return LANGS.map((lang) => ({ lang }));
 }
+
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-instrument-sans",
+});
 
 export const metadata: Metadata = { title: "Ruderal" };
 
@@ -27,14 +34,14 @@ export default async function RootLayout({
   const settings = await getSiteSettings();
 
   return (
-    <html lang={lang}>
+    <html lang={lang} className={instrumentSans.variable}>
       <body>
         <a href="#main" className="sr-only focus:not-sr-only">
           {UI.skipToContent[lang]}
         </a>
+        <Nav lang={lang} />
         <main id="main">{children}</main>
         <Footer settings={settings} lang={lang} />
-        <Nav lang={lang} />
       </body>
     </html>
   );

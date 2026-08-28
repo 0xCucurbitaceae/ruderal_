@@ -1,36 +1,38 @@
 import Link from "next/link";
-import { formatEventDate, t, type Lang } from "@/lib/i18n";
+import { t, type Lang } from "@/lib/i18n";
 import type { RuderalEvent } from "@/lib/sanity";
-import { UI } from "@/i18n/ui";
+import { EventMeta } from "./EventMeta";
 import { SanityImage } from "./SanityImage";
 
+/**
+ * A study group, drawn as the poster card in Figma 0:45. The poster itself is
+ * artwork uploaded per study group — the colour, the oversized split title and
+ * the vertical labels are all part of that image, not composed here.
+ */
 export function EventCard({ event, lang }: { event: RuderalEvent; lang: Lang }) {
   const title = t(event.title, lang);
   const excerpt = t(event.excerpt, lang);
-  const meta = [
-    [UI.date[lang], formatEventDate(event.startDate, event.endDate, lang)],
-    [UI.time[lang], t(event.timeLabel, lang)],
-    [UI.price[lang], t(event.priceLabel, lang)],
-    [UI.where[lang], t(event.locationLabel, lang)],
-  ].filter(([, value]) => Boolean(value)) as [string, string][];
-
-  // Only study groups have a detail page in the design.
-  const href = event.kind === "study-group" ? `/${lang}/study-groups/${event.slug}` : undefined;
-  const heading = href ? <Link href={href}>{title}</Link> : title;
+  const href = `/${lang}/study-groups/${event.slug}`;
 
   return (
-    <article>
-      <SanityImage image={event.image} sizes="(min-width: 1280px) 312px, 100vw" />
-      <h3>{heading}</h3>
-      {excerpt && <p>{excerpt}</p>}
-      <dl>
-        {meta.map(([label, value]) => (
-          <div key={label}>
-            <dt>{label}</dt>
-            <dd>{value}</dd>
-          </div>
-        ))}
-      </dl>
+    <article className="glass-panel flex w-full flex-col gap-3 rounded-[20px] pb-5">
+      <Link href={href} className="block">
+        <SanityImage
+          image={event.image}
+          sizes="(min-width: 1280px) 312px, (min-width: 768px) 45vw, 85vw"
+          className="aspect-[311/392] w-full rounded-t-[20px] object-cover"
+        />
+      </Link>
+
+      <div className="flex flex-col gap-2 px-5">
+        <h3 className="text-[12px] leading-[16.748px] font-bold italic">
+          <Link href={href} className="hover:underline">
+            {title}
+          </Link>
+        </h3>
+        {excerpt && <p className="text-[12px] leading-[16.748px] italic">{excerpt}</p>}
+        <EventMeta event={event} lang={lang} />
+      </div>
     </article>
   );
 }

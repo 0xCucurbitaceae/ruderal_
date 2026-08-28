@@ -60,12 +60,11 @@ const INTRO =
 
 export const placeholderSettings: SiteSettings = {
   siteName: "Ruderal",
-  heroHeading: { en: "Study groups", fr: "Groupes d'étude" },
-  heroIntroShort: {
+  sectionEyebrow: {
     en: "Documenting Artistic Practices and Circulating Knowledge",
     fr: "Documenter les pratiques artistiques et faire circuler les savoirs",
   },
-  heroIntroFull: { en: INTRO, fr: INTRO },
+  sectionIntroShort: { en: INTRO, fr: INTRO },
   footerBlurb: { en: BLURB, fr: BLURB },
   email: "hi.ruderal@gmail.com",
   instagramUrl: "https://instagram.com/",
