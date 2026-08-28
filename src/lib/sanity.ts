@@ -25,6 +25,10 @@ export const client = createClient({
   token: process.env.SANITY_READ_TOKEN,
   // A token and the CDN cache do not mix; every read here happens at build time.
   useCdn: !process.env.SANITY_READ_TOKEN,
+  // Reads happen during the build, where a slow connection should retry rather
+  // than fail the whole deploy. The 10s default trips regularly.
+  timeout: 30000,
+  maxRetries: 5,
 });
 
 function fetchOr<T>(fallback: T, query: string, params: QueryParams = {}): Promise<T> {

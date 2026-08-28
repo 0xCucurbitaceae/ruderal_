@@ -57,12 +57,14 @@ export default async function HomePage({ params }: Props) {
       <Hero lang={lang} siteName={settings?.siteName ?? "Ruderal"} />
 
       <section id="podcasts" className="relative z-10 flex flex-col items-center gap-[60px] pb-24">
-        {header(UI.nav.podcasts[lang], settings?.podcastsIntro)}
+        {header(UI.sections.podcasts[lang], settings?.podcastsIntro)}
         {featured && (
           <div className="mx-auto flex w-full max-w-[1120px] flex-col gap-10 px-6 lg:flex-row lg:items-start">
             <PodcastItem podcast={featured} lang={lang} featured />
             {rest.length > 0 && (
-              <ul className="flex w-full shrink-0 flex-col gap-[15px] lg:w-[271px]">
+              // Figma 0:227 caps this column at the height of the featured
+              // episode and scrolls the rest of the back catalogue inside it.
+              <ul className="flex w-full shrink-0 flex-col gap-[15.178px] lg:h-[529px] lg:w-[271px] lg:overflow-y-auto lg:pr-1">
                 {rest.map((podcast) => (
                   <li key={podcast._id}>
                     <PodcastItem podcast={podcast} lang={lang} />
@@ -75,9 +77,9 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       <section id="study-groups" className="relative z-10 flex flex-col items-center gap-[60px] pb-24">
-        {header(UI.nav.studyGroups[lang], settings?.studyGroupsIntro)}
-        {/* The design runs the posters off the right edge as a scrolling row. */}
-        <ul className="flex w-full snap-x gap-[42px] overflow-x-auto px-6 pb-4 lg:px-[80px]">
+        {header(UI.sections.studyGroups[lang], settings?.studyGroupsIntro)}
+        {/* The posters run off the right edge as a scrolling row. */}
+        <ul className="flex w-full snap-x scroll-px-6 gap-[42px] overflow-x-auto px-6 pb-4 lg:scroll-px-[80px] lg:px-[80px]">
           {studyGroups.map((event) => (
             <li key={event._id} className="w-[85vw] max-w-[311.75px] shrink-0 snap-start sm:w-[311.75px]">
               <EventCard event={event} lang={lang} />
@@ -87,7 +89,7 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       <section id="happenings" className="relative z-10 flex flex-col items-center gap-[60px] pb-16">
-        {header(UI.nav.happenings[lang], settings?.happeningsIntro)}
+        {header(UI.sections.happenings[lang], settings?.happeningsIntro)}
         <ul className="mx-auto flex w-full max-w-[1120px] flex-col gap-10 px-6">
           {happenings.map((event) => (
             <li key={event._id}>
