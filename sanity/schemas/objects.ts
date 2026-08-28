@@ -28,6 +28,28 @@ export const localeString = localeType("localeString", "Text (translated)", "str
 export const localeText = localeType("localeText", "Paragraph (translated)", "text");
 export const localeBlock = localeType("localeBlock", "Rich text (translated)", "block");
 
+export const sectionIntro = defineType({
+  name: "sectionIntro",
+  title: "Section intro",
+  type: "object",
+  options: { collapsible: true, collapsed: true },
+  fields: [
+    defineField({
+      name: "eyebrow",
+      title: "Tagline",
+      type: "localeString",
+      description: "The bold line above the intro.",
+    }),
+    defineField({ name: "short", title: "Intro", type: "localeText" }),
+    defineField({
+      name: "full",
+      title: "Intro (expanded)",
+      type: "localeText",
+      description: 'Revealed by the "More" link. Leave empty to hide the link.',
+    }),
+  ],
+});
+
 export const seo = defineType({
   name: "seo",
   title: "Social sharing (OpenGraph)",

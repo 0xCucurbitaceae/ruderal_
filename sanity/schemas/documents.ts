@@ -188,24 +188,10 @@ export const siteSettings = defineType({
   type: "document",
   fields: [
     defineField({ name: "siteName", type: "string", initialValue: "Ruderal" }),
-    defineField({
-      name: "sectionEyebrow",
-      title: "Section tagline",
-      type: "localeString",
-      description: "The bold line above the intro, repeated at the top of every home section.",
-    }),
-    defineField({
-      name: "sectionIntroShort",
-      title: "Section intro (short)",
-      type: "localeText",
-      description: "Shown by default under the tagline.",
-    }),
-    defineField({
-      name: "sectionIntroFull",
-      title: "Section intro (full)",
-      type: "localeText",
-      description: 'Revealed when a visitor clicks "More". Leave empty to hide the link.',
-    }),
+    // Each home section carries its own tagline and intro in the design.
+    defineField({ name: "podcastsIntro", title: "Podcasts intro", type: "sectionIntro" }),
+    defineField({ name: "studyGroupsIntro", title: "Study groups intro", type: "sectionIntro" }),
+    defineField({ name: "happeningsIntro", title: "Happenings intro", type: "sectionIntro" }),
     defineField({ name: "footerBlurb", title: "Footer text", type: "localeText" }),
     defineField({ name: "email", type: "string" }),
     defineField({ name: "instagramUrl", title: "Instagram URL", type: "url" }),

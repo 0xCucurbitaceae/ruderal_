@@ -39,3 +39,28 @@ body {
   filter: drop-shadow(-2px -2px 3px rgba(0, 0, 0, 0.05))
     drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.05));
 }
+
+/*
+ * The hero artwork grows out of the crack as the page scrolls (Figma 0:32 is
+ * the resting state, 0:574 the scrolled one). Driven by a scroll-progress
+ * timeline so it needs no JavaScript and no scroll listener; browsers without
+ * `animation-timeline` simply keep the resting state.
+ */
+@keyframes hero-grow {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.85);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .hero-grow {
+      animation: hero-grow linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100svh;
+    }
+  }
+}

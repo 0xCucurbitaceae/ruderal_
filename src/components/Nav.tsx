@@ -1,23 +1,21 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { UI } from "@/i18n/ui";
-
-import navLeaf from "../../public/design/nav-leaf.png";
-import navGrass from "../../public/design/nav-grass.png";
+import { PlantIcon } from "./PlantIcon";
 
 /** Order, labels and icons come from the Figma nav (0:290 desktop, 15:207 mobile). */
-const items = (lang: Lang) => [
-  { href: `/${lang}#podcasts`, label: UI.nav.podcasts[lang], icon: navLeaf },
-  { href: `/${lang}#study-groups`, label: UI.nav.studyGroups[lang], icon: navGrass },
-  { href: `/${lang}#happenings`, label: UI.nav.happenings[lang], icon: navLeaf },
-  { href: `/${lang}/about`, label: UI.nav.about[lang], icon: navLeaf },
-];
+const items = (lang: Lang) =>
+  [
+    { href: `/${lang}#podcasts`, label: UI.nav.podcasts[lang], icon: "fern" },
+    { href: `/${lang}#study-groups`, label: UI.nav.studyGroups[lang], icon: "dandelion" },
+    { href: `/${lang}#happenings`, label: UI.nav.happenings[lang], icon: "fern" },
+    { href: `/${lang}/about`, label: UI.nav.about[lang], icon: "fern" },
+  ] as const;
 
 /**
  * One nav at both sizes. The design stacks the icon above the label on mobile
  * and sets the label upright there, then puts them side by side in italic on
- * desktop — so this is a layout change, not a separate menu.
+ * desktop — a layout change at the breakpoint, not a second component.
  */
 export function Nav({ lang }: { lang: Lang }) {
   return (
@@ -29,13 +27,7 @@ export function Nav({ lang }: { lang: Lang }) {
               href={href}
               className="flex flex-col items-center justify-center gap-[3.429px] py-2 md:flex-row md:items-center"
             >
-              <Image
-                src={icon}
-                alt=""
-                aria-hidden
-                className="h-[25px] w-[39px] shrink-0 object-contain"
-                unoptimized
-              />
+              <PlantIcon variant={icon} />
               <span className="text-[14px] font-bold tracking-[-0.32px] whitespace-nowrap sm:text-[16px] md:italic">
                 {label}
               </span>

@@ -86,11 +86,17 @@ export type Page = {
   seo?: Seo;
 };
 
+export type SectionIntro = {
+  eyebrow?: Locale<string>;
+  short?: Locale<string>;
+  full?: Locale<string>;
+};
+
 export type SiteSettings = {
   siteName?: string;
-  sectionEyebrow?: Locale<string>;
-  sectionIntroShort?: Locale<string>;
-  sectionIntroFull?: Locale<string>;
+  podcastsIntro?: SectionIntro;
+  studyGroupsIntro?: SectionIntro;
+  happeningsIntro?: SectionIntro;
   footerBlurb?: Locale<string>;
   email?: string;
   instagramUrl?: string;
@@ -137,7 +143,7 @@ export const getSiteSettings = () =>
   fetchOr<SiteSettings | null>(
     placeholderSettings,
     `*[_type == "siteSettings"][0] {
-      siteName, sectionEyebrow, sectionIntroShort, sectionIntroFull,
+      siteName, podcastsIntro, studyGroupsIntro, happeningsIntro,
       footerBlurb, email, instagramUrl, defaultSeo{ogTitle, ogDescription, ogImage}
     }`,
   );

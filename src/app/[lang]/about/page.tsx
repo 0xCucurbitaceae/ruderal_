@@ -28,7 +28,7 @@ export default async function AboutPage({ params }: Props) {
   const lang = asLang(rawLang);
   const [page, settings] = await Promise.all([getPage("about"), getSiteSettings()]);
   const body = t(page?.body, lang) as PortableTextBlock[] | undefined;
-  const eyebrow = t(settings?.sectionEyebrow, lang);
+  const eyebrow = t(settings?.podcastsIntro?.eyebrow, lang);
 
   return (
     <article className="relative mx-auto my-10 w-full max-w-[1151px] px-4">
