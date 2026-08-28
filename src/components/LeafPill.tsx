@@ -7,7 +7,7 @@ import { PlantIcon } from "./PlantIcon";
 export function LeafPill({ children }: { children: React.ReactNode }) {
   return (
     <span className="flex items-center gap-[3.429px] py-2">
-      <PlantIcon variant="fern" />
+      <PlantIcon name="studyGroups" />
       <span className="text-[14px] font-bold italic tracking-[-0.28px]">{children}</span>
     </span>
   );

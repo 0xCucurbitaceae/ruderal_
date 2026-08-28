@@ -1,16 +1,16 @@
 import Link from "next/link";
 import type { Lang } from "@/lib/i18n";
 import { UI } from "@/i18n/ui";
-import { PlantIcon } from "./PlantIcon";
+import { PlantIcon, type PlantName } from "./PlantIcon";
 
 /** Order, labels and icons come from the Figma nav (0:290 desktop, 15:207 mobile). */
 const items = (lang: Lang) =>
   [
-    { href: `/${lang}#podcasts`, label: UI.nav.podcasts[lang], icon: "fern" },
-    { href: `/${lang}#study-groups`, label: UI.nav.studyGroups[lang], icon: "dandelion" },
-    { href: `/${lang}#happenings`, label: UI.nav.happenings[lang], icon: "fern" },
-    { href: `/${lang}/about`, label: UI.nav.about[lang], icon: "fern" },
-  ] as const;
+    { href: `/${lang}#podcasts`, label: UI.nav.podcasts[lang], icon: "podcasts" },
+    { href: `/${lang}#study-groups`, label: UI.nav.studyGroups[lang], icon: "studyGroups" },
+    { href: `/${lang}#happenings`, label: UI.nav.happenings[lang], icon: "happenings" },
+    { href: `/${lang}/about`, label: UI.nav.about[lang], icon: "about" },
+  ] as const satisfies readonly { href: string; label: string; icon: PlantName }[];
 
 /**
  * One nav at both sizes. The design stacks the icon above the label on mobile
@@ -27,7 +27,7 @@ export function Nav({ lang }: { lang: Lang }) {
               href={href}
               className="flex flex-col items-center justify-center gap-[3.429px] py-2 md:flex-row md:items-center"
             >
-              <PlantIcon variant={icon} />
+              <PlantIcon name={icon} />
               <span className="text-[14px] font-bold tracking-[-0.32px] whitespace-nowrap sm:text-[16px] md:italic">
                 {label}
               </span>
