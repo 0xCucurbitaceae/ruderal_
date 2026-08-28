@@ -8,12 +8,15 @@ export const UI = {
     happenings: { en: "Happenings", fr: "Événements" },
     about: { en: "About", fr: "À propos" },
   },
-  /** Section headings differ from the nav labels: the nav reads "Study group",
-   *  the heading above the posters reads "Study groups". */
+  /**
+   * Section headings differ from the nav labels — the nav reads "Study group",
+   * the heading above the posters reads "Study groups" — and the design breaks
+   * them across two lines mid-word, so each is stored as its own lines.
+   */
   sections: {
-    podcasts: { en: "Podcasts", fr: "Podcasts" },
-    studyGroups: { en: "Study groups", fr: "Groupes d'étude" },
-    happenings: { en: "Happenings", fr: "Événements" },
+    podcasts: { en: ["Podcasts"], fr: ["Podcasts"] },
+    studyGroups: { en: ["Study", "groups"], fr: ["Groupes", "d'étude"] },
+    happenings: { en: ["Happen", "nings"], fr: ["Événe", "ments"] },
   },
   more: { en: "More", fr: "Plus" },
   subscribe: { en: "Subscribe", fr: "S'inscrire" },

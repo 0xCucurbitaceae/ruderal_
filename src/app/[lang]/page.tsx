@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo";
 import { UI } from "@/i18n/ui";
 import { EventCard } from "@/components/EventCard";
 import { HappeningCard } from "@/components/HappeningCard";
-import { PodcastItem } from "@/components/PodcastItem";
+import { PodcastPlayer } from "@/components/PodcastPlayer";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ExpandableIntro } from "@/components/ExpandableIntro";
 import { Hero } from "@/components/Hero";
@@ -32,12 +32,11 @@ export default async function HomePage({ params }: Props) {
     getPodcasts(),
   ]);
 
-  const [featured, ...rest] = podcasts;
-
   /** Each section has its own tagline and intro in the design. */
-  const header = (title: string, intro?: SectionIntro) => (
+  const header = (lines: readonly string[], intro?: SectionIntro, alignLastLineRight = false) => (
     <SectionHeader
-      title={title}
+      lines={lines}
+      alignLastLineRight={alignLastLineRight}
       eyebrow={t(intro?.eyebrow, lang)}
       intro={<ExpandableIntro short={t(intro?.short, lang)} full={t(intro?.full, lang)} lang={lang} />}
     />
@@ -54,26 +53,11 @@ export default async function HomePage({ params }: Props) {
         className="pointer-events-none absolute top-[520px] right-[-40px] z-0 hidden w-[300px] max-w-none select-none lg:block"
       />
 
-      <Hero lang={lang} siteName={settings?.siteName ?? "Ruderal"} />
+      <Hero siteName={settings?.siteName ?? "Ruderal"} />
 
       <section id="podcasts" className="relative z-10 flex flex-col items-center gap-[60px] pb-24">
         {header(UI.sections.podcasts[lang], settings?.podcastsIntro)}
-        {featured && (
-          <div className="mx-auto flex w-full max-w-[1120px] flex-col gap-10 px-6 lg:flex-row lg:items-start">
-            <PodcastItem podcast={featured} lang={lang} featured />
-            {rest.length > 0 && (
-              // Figma 0:227 caps this column at the height of the featured
-              // episode and scrolls the rest of the back catalogue inside it.
-              <ul className="flex w-full shrink-0 flex-col gap-[15.178px] lg:h-[529px] lg:w-[271px] lg:overflow-y-auto lg:pr-1">
-                {rest.map((podcast) => (
-                  <li key={podcast._id}>
-                    <PodcastItem podcast={podcast} lang={lang} />
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )}
+        <PodcastPlayer podcasts={podcasts} lang={lang} />
       </section>
 
       <section id="study-groups" className="relative z-10 flex flex-col items-center gap-[60px] pb-24">
@@ -89,7 +73,7 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       <section id="happenings" className="relative z-10 flex flex-col items-center gap-[60px] pb-16">
-        {header(UI.sections.happenings[lang], settings?.happeningsIntro)}
+        {header(UI.sections.happenings[lang], settings?.happeningsIntro, true)}
         <ul className="mx-auto flex w-full max-w-[1120px] flex-col gap-10 px-6">
           {happenings.map((event) => (
             <li key={event._id}>

@@ -140,11 +140,20 @@ export const podcast = defineType({
       description: 'As shown on the card, e.g. "40min".',
     }),
     defineField({
-      name: "embedUrl",
-      title: "Embed URL",
+      name: "youtubeUrl",
+      title: "YouTube URL",
       type: "url",
-      description: "Player link from Spotify, YouTube, Ausha, etc. The audio is not stored here.",
-      validation: (rule) => rule.required(),
+      description:
+        "Link to the episode on YouTube, e.g. https://www.youtube.com/watch?v=… The video is not stored here.",
+      validation: (rule) =>
+        rule
+          .required()
+          .uri({ scheme: ["https"] })
+          .custom((value) =>
+            !value || /(?:youtube\.com|youtu\.be)/.test(value)
+              ? true
+              : "Must be a youtube.com or youtu.be link.",
+          ),
     }),
     defineField({
       name: "publishedAt",

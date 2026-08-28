@@ -42,7 +42,7 @@ export const placeholderPodcasts: Podcast[] = [
     title: { en: "Baby teeth — Catol Teixeira", fr: "Baby teeth — Catol Teixeira" },
     description: { en: LOREM, fr: LOREM },
     duration: "40min",
-    embedUrl: "https://example.org/episode",
+    youtubeUrl: "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
     publishedAt: "2026-09-08",
   },
 ];

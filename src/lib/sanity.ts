@@ -76,7 +76,7 @@ export type Podcast = {
   image?: SanityImageRef;
   description?: Locale<string>;
   duration?: string;
-  embedUrl?: string;
+  youtubeUrl?: string;
   publishedAt: string;
   seo?: Seo;
 };
@@ -130,7 +130,7 @@ export const getPodcasts = () =>
   fetchOr<Podcast[]>(
     placeholderPodcasts,
     `*[_type == "podcast"] | order(publishedAt desc) {
-      _id, title, "slug": slug.current, image, description, duration, embedUrl, publishedAt, ${SEO}
+      _id, title, "slug": slug.current, image, description, duration, youtubeUrl, publishedAt, ${SEO}
     }`,
   );
 

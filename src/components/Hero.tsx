@@ -1,6 +1,4 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
-import { LanguageSwitch } from "./LanguageSwitch";
 
 import wordmark from "../../public/design/wordmark.png";
 import heroGrowth from "../../public/design/hero-growth.png";
@@ -11,11 +9,9 @@ import heroGrowth from "../../public/design/hero-growth.png";
  * width. The artwork deliberately runs past the block into the section below,
  * as it does in the design, so nothing here clips.
  */
-export function Hero({ lang, siteName }: { lang: Lang; siteName: string }) {
+export function Hero({ siteName }: { siteName: string }) {
   return (
     <header className="relative z-10 aspect-[1280/694] w-full">
-      <LanguageSwitch lang={lang} className="absolute top-[3%] right-[6%] z-20" />
-
       <h1 className="absolute top-[24.5%] left-[13.1%] w-[73.7%]">
         <Image src={wordmark} alt={siteName} priority className="w-full" />
       </h1>
