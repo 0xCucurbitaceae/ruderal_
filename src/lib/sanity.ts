@@ -52,10 +52,12 @@ export type RuderalEvent = {
   title: Locale<string>;
   slug: string;
   image?: SanityImageRef;
+  heroImage?: SanityImageRef;
   excerpt?: Locale<string>;
   body?: Locale<PortableText>;
   startDate: string;
   endDate?: string;
+  subscriptionDeadline?: string;
   timeLabel?: Locale<string>;
   priceLabel?: Locale<string>;
   locationLabel?: Locale<string>;
@@ -96,8 +98,8 @@ export type SiteSettings = {
 };
 
 const SEO = `seo{ogTitle, ogDescription, ogImage}`;
-const EVENT_FIELDS = `_id, kind, title, "slug": slug.current, image, excerpt, body,
-  startDate, endDate, timeLabel, priceLabel, locationLabel, subscribeUrl, ${SEO}`;
+const EVENT_FIELDS = `_id, kind, title, "slug": slug.current, image, heroImage, excerpt, body,
+  startDate, endDate, subscriptionDeadline, timeLabel, priceLabel, locationLabel, subscribeUrl, ${SEO}`;
 
 /** Newest first — the design just lists cards, with no upcoming/past split. */
 export const getEvents = (kind: EventKind) =>

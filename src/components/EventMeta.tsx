@@ -6,9 +6,24 @@ import { UI } from "@/i18n/ui";
  * The labelled rows under every card, separated by hairlines
  * (Figma 0:58 on a study group, 0:270 on a happening — identical markup).
  */
-export function EventMeta({ event, lang }: { event: RuderalEvent; lang: Lang }) {
+export function EventMeta({
+  event,
+  lang,
+  showDeadline = false,
+}: {
+  event: RuderalEvent;
+  lang: Lang;
+  /** The deadline row appears on the detail page only (Figma 0:1165). */
+  showDeadline?: boolean;
+}) {
   const rows: [string, string | undefined][] = [
     [UI.date[lang], formatEventDate(event.startDate, event.endDate, lang)],
+    ...(showDeadline && event.subscriptionDeadline
+      ? ([[UI.deadline[lang], formatEventDate(event.subscriptionDeadline, undefined, lang)]] as [
+          string,
+          string,
+        ][])
+      : []),
     [UI.time[lang], t(event.timeLabel, lang)],
     [UI.price[lang], t(event.priceLabel, lang)],
     [UI.where[lang], t(event.locationLabel, lang)],

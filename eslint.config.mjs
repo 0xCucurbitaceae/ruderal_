@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // The Studio is its own package with its own build output; linting the
+    // bundled Studio exhausts Node's heap.
+    "sanity/dist/**",
+    "sanity/node_modules/**",
   ]),
 ]);
 

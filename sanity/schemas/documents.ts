@@ -1,9 +1,10 @@
 import { defineField, defineType } from "sanity";
 
-const image = (name = "image", title = "Image") =>
+const image = (name = "image", title = "Image", description?: string) =>
   defineField({
     name,
     title,
+    description,
     type: "image",
     options: { hotspot: true },
     fields: [
@@ -48,6 +49,7 @@ export const event = defineType({
       validation: (rule) => rule.required(),
     }),
     image("image", "Poster"),
+    image("heroImage", "Detail page image", "Wide photo shown at the top of the detail page. Falls back to the poster."),
     defineField({
       name: "excerpt",
       title: "Short description",
@@ -72,6 +74,12 @@ export const event = defineType({
           if (!endDate || !startDate || endDate >= startDate) return true;
           return "End date must not be before the start date.";
         }),
+    }),
+    defineField({
+      name: "subscriptionDeadline",
+      title: "Subscription deadline",
+      type: "date",
+      description: "Last day to sign up. Shown only on the detail page.",
     }),
     defineField({
       name: "timeLabel",

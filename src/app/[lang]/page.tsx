@@ -9,6 +9,7 @@ import { HappeningCard } from "@/components/HappeningCard";
 import { PodcastItem } from "@/components/PodcastItem";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ExpandableIntro } from "@/components/ExpandableIntro";
+import { LanguageSwitch } from "@/components/LanguageSwitch";
 
 import wordmark from "../../../public/design/wordmark.png";
 import vine from "../../../public/design/vine.png";
@@ -53,10 +54,11 @@ export default async function HomePage({ params }: Props) {
         className="pointer-events-none absolute top-[520px] right-[-40px] z-0 hidden w-[300px] max-w-none select-none lg:block"
       />
 
-      <header className="relative z-10 mx-auto max-w-[1120px] px-6 pt-10 pb-16 lg:pt-16 lg:pb-24">
-        <h1>
+      <header className="relative z-10 mx-auto flex max-w-[1120px] items-start gap-6 px-6 pt-10 pb-16 lg:pt-16 lg:pb-24">
+        <h1 className="min-w-0 flex-1">
           <Image src={wordmark} alt={settings?.siteName ?? "Ruderal"} priority className="w-full" />
         </h1>
+        <LanguageSwitch lang={lang} className="shrink-0 pt-2" />
       </header>
 
       <section id="podcasts" className="relative z-10 flex flex-col items-center gap-[60px] pb-24">

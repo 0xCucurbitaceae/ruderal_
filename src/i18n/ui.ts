@@ -15,8 +15,7 @@ export const UI = {
   time: { en: "Time", fr: "Horaire" },
   price: { en: "Price", fr: "Prix" },
   where: { en: "Where", fr: "Lieu" },
-  openMenu: { en: "Open menu", fr: "Ouvrir le menu" },
-  closeMenu: { en: "Close menu", fr: "Fermer le menu" },
+  deadline: { en: "Subscription date", fr: "Date d'inscription" },
   skipToContent: { en: "Skip to content", fr: "Aller au contenu" },
 } as const satisfies Record<string, unknown>;
 

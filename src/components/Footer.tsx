@@ -2,6 +2,7 @@ import Link from "next/link";
 import { t, type Lang } from "@/lib/i18n";
 import type { SiteSettings } from "@/lib/sanity";
 import { UI } from "@/i18n/ui";
+import { LanguageSwitch } from "./LanguageSwitch";
 
 /** Figma node 0:281. */
 export function Footer({ settings, lang }: { settings: SiteSettings | null; lang: Lang }) {
@@ -32,6 +33,7 @@ export function Footer({ settings, lang }: { settings: SiteSettings | null; lang
               {settings.email}
             </a>
           )}
+          <LanguageSwitch lang={lang} />
           {settings?.instagramUrl && (
             <a href={settings.instagramUrl} rel="me noreferrer" target="_blank" aria-label="Instagram">
               {/* eslint-disable-next-line @next/next/no-img-element */}
