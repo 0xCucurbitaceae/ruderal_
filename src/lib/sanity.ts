@@ -20,11 +20,9 @@ export const client = createClient({
   projectId: projectId ?? "placeholder",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
   apiVersion: "2024-10-01",
-  // Read token, used only while building. It is deliberately not NEXT_PUBLIC_,
-  // so it is never bundled into anything the browser downloads.
-  token: process.env.SANITY_READ_TOKEN,
-  // A token and the CDN cache do not mix; every read here happens at build time.
-  useCdn: !process.env.SANITY_READ_TOKEN,
+  // No token: the dataset is public and every document id is dot-free, which
+  // is what unauthenticated reads require. See .env.production.
+  useCdn: true,
   // Reads happen during the build, where a slow connection should retry rather
   // than fail the whole deploy. The 10s default trips regularly.
   timeout: 30000,
