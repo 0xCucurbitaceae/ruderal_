@@ -1,1 +1,3 @@
+# Cloudflare Pages reads this file; Vercel reads vercel.json. Both send the
+# bare domain to the default language, since a static export has no middleware.
 /  /en  302
