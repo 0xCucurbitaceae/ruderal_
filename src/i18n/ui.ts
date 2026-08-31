@@ -19,6 +19,7 @@ export const UI = {
     happenings: { en: ["Happen", "nings"], fr: ["Événe", "ments"] },
   },
   more: { en: "More", fr: "Plus" },
+  less: { en: "Less", fr: "Moins" },
   subscribe: { en: "Subscribe", fr: "S'inscrire" },
   studyGroupPrefix: { en: "Study group", fr: "Groupe d'étude" },
   date: { en: "Date", fr: "Date" },

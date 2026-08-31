@@ -8,7 +8,6 @@ import { EventCard } from "@/components/EventCard";
 import { HappeningCard } from "@/components/HappeningCard";
 import { PodcastPlayer } from "@/components/PodcastPlayer";
 import { SectionHeader } from "@/components/SectionHeader";
-import { ExpandableIntro } from "@/components/ExpandableIntro";
 import { Hero } from "@/components/Hero";
 
 import vine from "../../../public/design/vine.png";
@@ -33,12 +32,12 @@ export default async function HomePage({ params }: Props) {
   ]);
 
   /** Each section has its own tagline and intro in the design. */
-  const header = (lines: readonly string[], intro?: SectionIntro, alignLastLineRight = false) => (
+  const header = (lines: readonly string[], intro?: SectionIntro) => (
     <SectionHeader
       lines={lines}
-      alignLastLineRight={alignLastLineRight}
+      lang={lang}
       eyebrow={t(intro?.eyebrow, lang)}
-      intro={<ExpandableIntro short={t(intro?.short, lang)} full={t(intro?.full, lang)} lang={lang} />}
+      intro={t(intro?.full, lang) ?? t(intro?.short, lang)}
     />
   );
 
@@ -73,7 +72,7 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       <section id="happenings" className="relative z-10 flex flex-col items-center gap-[60px] pb-16">
-        {header(UI.sections.happenings[lang], settings?.happeningsIntro, true)}
+        {header(UI.sections.happenings[lang], settings?.happeningsIntro)}
         <ul className="mx-auto flex w-full max-w-[1120px] flex-col gap-10 px-6">
           {happenings.map((event) => (
             <li key={event._id}>
