@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { cracksSvg } from "@/lib/heroCracks";
+
 import wordmark from "../../public/design/wordmark.png";
 
 /**
@@ -34,8 +36,9 @@ export function Hero({ siteName }: { siteName: string }) {
         aria-hidden
         className="hero-art pointer-events-none absolute top-[10.4%] left-[43.75%] aspect-[1441/1425] w-[57.8%] origin-[61%_49%] select-none"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/design/hero-cracks.svg" alt="" className="hero-cracks absolute inset-0 size-full" />
+        {/* The artwork is inlined so each branch and scribble can animate on
+            its own; an <img> cannot be styled from outside. */}
+        <div className="absolute inset-0" dangerouslySetInnerHTML={{ __html: cracksSvg }} />
         {PLANTS.map((plant, i) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img

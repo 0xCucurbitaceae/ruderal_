@@ -41,23 +41,39 @@ body {
 }
 
 /*
- * The hero artwork grows out of the crack as the page scrolls (Figma 0:32 is
- * the resting state, 0:574 the scrolled one). Driven by a scroll-progress
- * timeline so it needs no JavaScript and no scroll listener; browsers without
- * `animation-timeline` simply keep the resting state.
- */
-/*
  * The hero has two independent motions.
  *
  * On load the cracks draw themselves outward from the point they radiate from,
- * and each plant then sprouts where its crack ends. The draw is a radial mask
- * opening, not a scale: the crack artwork is filled outline shapes, so there is
- * no stroke to dash along, but because every crack radiates from one origin a
- * radial reveal reads as them growing outward.
+ * and each plant then sprouts where its crack ends, together with the scribble
+ * underneath it that acts as its shadow. The draw is a reveal, not a scale: the
+ * crack artwork is filled outline shapes, so there is no stroke to dash along,
+ * but because every crack radiates from one origin a circle growing from that
+ * origin reads as them drawing outward.
  *
- * On scroll the whole composition grows. That animates the wrapper's transform,
- * while the load animation only touches mask and opacity, so they never fight.
+ * Each branch carries its own mask so the branches can be staggered, and those
+ * masks live in the SVG's own coordinates (see public/design/hero-cracks.svg),
+ * which is what keeps every branch opening from the artwork's origin rather
+ * than from its own middle.
+ *
+ * On scroll the whole composition grows out of the crack (Figma 0:32 is the
+ * resting state, 0:574 the scrolled one), driven by a scroll-progress timeline
+ * so it needs no JavaScript; browsers without `animation-timeline` simply keep
+ * the resting state. That animates the wrapper's transform, while the load
+ * animation only touches the layers inside it, so the two never fight.
+ *
+ * The timings are variables so /hero-lab can tune them live. The values here
+ * are the ones the site ships.
  */
+:root {
+  --hero-draw: 2900ms;
+  --hero-crack-stagger: 50ms;
+  --hero-gap: 1100ms;
+  --hero-pop: 520ms;
+  --hero-plant-stagger: 120ms;
+  /* Seven branches, so six stagger steps after the first one. */
+  --hero-cracks-done: calc(var(--hero-draw) + 6 * var(--hero-crack-stagger) + var(--hero-gap));
+}
+
 @keyframes hero-grow {
   from {
     transform: scale(1);
@@ -67,12 +83,11 @@ body {
   }
 }
 
+/* No `to`: the circle's own r attribute is the open state, so the artwork still
+   renders whole wherever this animation does not run. */
 @keyframes hero-draw {
   from {
-    mask-size: 0% 0%;
-  }
-  to {
-    mask-size: 320% 320%;
+    r: 0px;
   }
 }
 
@@ -90,6 +105,17 @@ body {
   }
 }
 
+@keyframes hero-shadow {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: scroll()) {
     .hero-art {
@@ -99,21 +125,24 @@ body {
     }
   }
 
-  .hero-cracks {
-    mask-image: radial-gradient(
-      circle at 61% 49%,
-      #000 0 60%,
-      rgb(0 0 0 / 0.35) 78%,
-      transparent 100%
-    );
-    mask-repeat: no-repeat;
-    mask-position: 61% 49%;
-    animation: hero-draw 1000ms cubic-bezier(0.25, 0.7, 0.35, 1) both;
+  .hero-reveal {
+    animation: hero-draw var(--hero-draw) cubic-bezier(0.25, 0.7, 0.35, 1) backwards;
+    /* Drawn outward: the branches nearest the origin go first. */
+    animation-delay: calc(var(--i) * var(--hero-crack-stagger));
   }
 
   .hero-plant {
     /* Sprout once the cracks have finished, nearest the origin first. */
-    animation: hero-sprout 520ms cubic-bezier(0.2, 1.5, 0.4, 1) both;
-    animation-delay: calc(1000ms + var(--i) * 120ms);
+    animation: hero-sprout var(--hero-pop) cubic-bezier(0.2, 1.5, 0.4, 1) both;
+    animation-delay: calc(var(--hero-cracks-done) + var(--i) * var(--hero-plant-stagger));
+  }
+
+  .hero-scribble {
+    /* A plant's shadow, so it appears with its plant. A percentage origin on an
+       SVG group resolves against the viewport unless the box is the shape. */
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: hero-shadow var(--hero-pop) cubic-bezier(0.2, 1.5, 0.4, 1) both;
+    animation-delay: calc(var(--hero-cracks-done) + var(--i) * var(--hero-plant-stagger));
   }
 }
