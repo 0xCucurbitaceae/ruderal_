@@ -51,11 +51,14 @@ export function PodcastPlayer({ podcasts, lang }: { podcasts: Podcast[]; lang: L
         </div>
       </div>
 
-      <ul className="flex w-full shrink-0 flex-col gap-[15.178px] lg:h-[529px] lg:w-[271px] lg:overflow-y-auto lg:pr-1">
+      {/* Stacked under the player there is no room for a tall column, so the
+          episodes scroll sideways like the study groups; at lg they become the
+          vertical list the design asks for. */}
+      <ul className="flex w-full shrink-0 snap-x scroll-px-6 gap-4 overflow-x-auto pb-4 lg:h-[529px] lg:w-[271px] lg:snap-none lg:flex-col lg:gap-[15.178px] lg:overflow-x-hidden lg:overflow-y-auto lg:pb-0 lg:pr-1">
         {podcasts.map((podcast) => {
           const isSelected = podcast._id === selected._id;
           return (
-            <li key={podcast._id}>
+            <li key={podcast._id} className="w-[70vw] max-w-[271px] shrink-0 snap-start lg:w-full lg:max-w-none">
               <button
                 type="button"
                 onClick={() => select(podcast._id)}
