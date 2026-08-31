@@ -61,17 +61,21 @@ body {
  * the resting state. That animates the wrapper's transform, while the load
  * animation only touches the layers inside it, so the two never fight.
  *
- * The timings are variables so /hero-lab can tune them live. The values here
- * are the ones the site ships.
+ * The timings are named variables because they relate to each other: the
+ * plants are timed off the last branch finishing, not off the clock.
  */
 :root {
-  --hero-draw: 2900ms;
+  --hero-draw: 2000ms;
   --hero-crack-stagger: 50ms;
-  --hero-gap: 1100ms;
-  --hero-pop: 520ms;
+  --hero-after-cracks: -700ms;
+  --hero-pop: 320ms;
   --hero-plant-stagger: 120ms;
-  /* Seven branches, so six stagger steps after the first one. */
-  --hero-cracks-done: calc(var(--hero-draw) + 6 * var(--hero-crack-stagger) + var(--hero-gap));
+  /* Seven branches, so six stagger steps after the first one. The plants are
+     timed off the last branch finishing; a negative offset starts them while
+     the cracks are still drawing. */
+  --hero-plants-start: calc(
+    var(--hero-draw) + 6 * var(--hero-crack-stagger) + var(--hero-after-cracks)
+  );
 }
 
 @keyframes hero-grow {
@@ -134,7 +138,7 @@ body {
   .hero-plant {
     /* Sprout once the cracks have finished, nearest the origin first. */
     animation: hero-sprout var(--hero-pop) cubic-bezier(0.2, 1.5, 0.4, 1) both;
-    animation-delay: calc(var(--hero-cracks-done) + var(--i) * var(--hero-plant-stagger));
+    animation-delay: calc(var(--hero-plants-start) + var(--i) * var(--hero-plant-stagger));
   }
 
   .hero-scribble {
@@ -143,6 +147,6 @@ body {
     transform-box: fill-box;
     transform-origin: 50% 50%;
     animation: hero-shadow var(--hero-pop) cubic-bezier(0.2, 1.5, 0.4, 1) both;
-    animation-delay: calc(var(--hero-cracks-done) + var(--i) * var(--hero-plant-stagger));
+    animation-delay: calc(var(--hero-plants-start) + var(--i) * var(--hero-plant-stagger));
   }
 }
