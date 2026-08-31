@@ -21,7 +21,7 @@ export const client = createClient({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
   apiVersion: "2024-10-01",
   // No token: the dataset is public and every document id is dot-free, which
-  // is what unauthenticated reads require. See .env.production.
+  // is what unauthenticated reads require. See .env.
   useCdn: true,
   // Reads happen during the build, where a slow connection should retry rather
   // than fail the whole deploy. The 10s default trips regularly.

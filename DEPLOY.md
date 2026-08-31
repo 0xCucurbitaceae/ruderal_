@@ -12,7 +12,7 @@ The site builds to static files, so it runs on any static host.
 
 ## Environment variables
 
-**None.** The three public values live in `.env.production`, which is committed
+**None.** The three public values live in `.env`, which is committed
 on purpose — none of them are secrets, and keeping them in the repo means a host
 can build the site with no configuration at all.
 
