@@ -31,10 +31,12 @@ export function SectionHeader({
 
   return (
     <div className="glass-panel flex w-full flex-col gap-6 rounded-r-[20px] px-6 pt-5 pb-[13px] lg:flex-row lg:items-center lg:gap-[60px] lg:px-20">
-      <h2 className="flex w-full flex-col justify-center text-[52px] leading-[0.6875] font-bold italic tracking-[-1.92px] sm:text-[72px] lg:w-[390px] lg:shrink-0 lg:text-[96px]">
+      <h2 className="flex w-full flex-col justify-center text-[52px] leading-none font-bold italic tracking-[-1.92px] sm:text-[72px] lg:w-[390px] lg:shrink-0 lg:text-[96px]">
         {lines.map((line, i) => (
-          // Each line after the first steps in, as the design staggers them.
-          <span key={line} style={i > 0 ? { marginInlineStart: `${i * 1.25}em` } : undefined}>
+          // The design staggers the lines: the first sits left, the rest right.
+          // Placing them at the edges rather than indenting them means a long
+          // word cannot push out of the heading and over the text beside it.
+          <span key={line} className={i === 0 ? "self-start" : "self-end"}>
             {line}
           </span>
         ))}
