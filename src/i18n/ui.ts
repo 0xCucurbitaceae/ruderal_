@@ -5,18 +5,19 @@ export const UI = {
   nav: {
     podcasts: { en: "Podcasts", fr: "Podcasts" },
     studyGroups: { en: "Study group", fr: "Groupe d'étude" },
-    happenings: { en: "Happenings", fr: "Événements" },
+    happenings: { en: "Happenings", fr: "Happenings" },
     about: { en: "About", fr: "À propos" },
   },
   /**
-   * Section headings differ from the nav labels — the nav reads "Study group",
-   * the heading above the posters reads "Study groups" — and the design breaks
-   * them across two lines mid-word, so each is stored as its own lines.
+   * The design breaks each section heading across two lines mid-word, so each
+   * is stored as its own lines rather than wrapped — where a word breaks is a
+   * decision per language.
    */
   sections: {
     podcasts: { en: ["Podcasts"], fr: ["Podcasts"] },
-    studyGroups: { en: ["Study", "groups"], fr: ["Groupes", "d'étude"] },
-    happenings: { en: ["Happen", "nings"], fr: ["Événe", "ments"] },
+    studyGroups: { en: ["Study", "group"], fr: ["Groupe", "d'étude"] },
+    // French uses the English word for these.
+    happenings: { en: ["Happen", "nings"], fr: ["Happen", "nings"] },
   },
   more: { en: "More", fr: "Plus" },
   less: { en: "Less", fr: "Moins" },
