@@ -74,7 +74,7 @@ export function PodcastPlayer({ podcasts, lang }: { podcasts: Podcast[]; lang: L
                     isSelected ? "ring-2 ring-ink" : ""
                   }`}
                 />
-                <span className="flex w-full items-start justify-between gap-4 text-[12px] leading-[16.748px] font-bold italic">
+                <span className="flex w-full items-start justify-between gap-4 text-[14px] leading-[16.748px] font-bold italic">
                   <span>{t(podcast.title, lang)}</span>
                   {podcast.duration && <span className="shrink-0">{podcast.duration}</span>}
                 </span>

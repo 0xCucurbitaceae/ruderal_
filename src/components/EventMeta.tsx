@@ -30,7 +30,7 @@ export function EventMeta({
   ];
 
   return (
-    <dl className="w-full text-[12px] leading-[16.748px] italic">
+    <dl className="w-full text-[14px] leading-[16.748px] italic">
       {rows
         .filter(([, value]) => Boolean(value))
         .map(([label, value]) => (

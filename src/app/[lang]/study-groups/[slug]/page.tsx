@@ -60,7 +60,7 @@ export default async function StudyGroupPage({ params }: Props) {
               priority
               className="h-[200px] w-full rounded-[20px] object-cover sm:h-[295px]"
             />
-            <div className="text-[12px] leading-[16.748px] italic [&_p]:mb-4">
+            <div className="text-[14px] leading-[16.748px] italic [&_p]:mb-4">
               {body ? <PortableText value={body} /> : <p>{t(event.excerpt, lang)}</p>}
             </div>
           </div>

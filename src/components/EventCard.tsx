@@ -15,7 +15,7 @@ export function EventCard({ event, lang }: { event: RuderalEvent; lang: Lang }) 
   const href = `/${lang}/study-groups/${event.slug}`;
 
   return (
-    <article className="glass-panel flex w-full flex-col gap-3 rounded-[20px] pb-5">
+    <article className="glass-panel flex w-full flex-col gap-3 rounded-[20px] pb-3">
       <Link href={href} className="block">
         <SanityImage
           image={event.image}
@@ -24,13 +24,13 @@ export function EventCard({ event, lang }: { event: RuderalEvent; lang: Lang }) 
         />
       </Link>
 
-      <div className="flex flex-col gap-2 px-5">
-        <h3 className="text-[12px] leading-[16.748px] font-bold italic">
+      <div className="flex flex-col gap-2 px-3">
+        <h3 className="text-[14px] leading-[16.748px] font-bold italic">
           <Link href={href} className="hover:underline">
             {title}
           </Link>
         </h3>
-        {excerpt && <p className="text-[12px] leading-[16.748px] italic">{excerpt}</p>}
+        {excerpt && <p className="text-[14px] leading-[16.748px] italic">{excerpt}</p>}
         <EventMeta event={event} lang={lang} />
       </div>
     </article>
