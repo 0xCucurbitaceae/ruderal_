@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Type — the design uses Instrument Sans throughout, mostly bold italic. */
+  /* Type — the design uses Instrument Sans throughout, mostly bold. */
   --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
 
   /* Surfaces */

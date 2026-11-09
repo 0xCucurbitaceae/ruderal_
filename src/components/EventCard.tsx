@@ -25,12 +25,12 @@ export function EventCard({ event, lang }: { event: RuderalEvent; lang: Lang }) 
       </Link>
 
       <div className="flex flex-col gap-2 px-3">
-        <h3 className="text-[14px] leading-[16.748px] font-bold italic">
+        <h3 className="text-[14px] leading-[16.748px] font-bold">
           <Link href={href} className="hover:underline">
             {title}
           </Link>
         </h3>
-        {excerpt && <p className="text-[14px] leading-[16.748px] italic">{excerpt}</p>}
+        {excerpt && <p className="text-[14px] leading-[16.748px]">{excerpt}</p>}
         <EventMeta event={event} lang={lang} />
       </div>
     </article>

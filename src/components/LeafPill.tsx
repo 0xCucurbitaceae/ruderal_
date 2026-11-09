@@ -8,7 +8,7 @@ export function LeafPill({ children }: { children: React.ReactNode }) {
   return (
     <span className="flex items-center gap-[3.429px] py-2">
       <PlantIcon name="studyGroups" />
-      <span className="text-[14px] font-bold italic tracking-[-0.28px]">{children}</span>
+      <span className="text-[14px] font-bold tracking-[-0.28px]">{children}</span>
     </span>
   );
 }

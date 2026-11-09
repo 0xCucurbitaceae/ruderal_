@@ -31,7 +31,7 @@ export function SectionHeader({
 
   return (
     <div className="glass-panel flex w-full flex-col gap-6 rounded-r-[20px] px-6 pt-5 pb-[13px] lg:flex-row lg:items-center lg:gap-[60px] lg:px-20">
-      <h2 className="flex w-full flex-col justify-center text-[52px] leading-none font-bold italic tracking-[-1.92px] sm:text-[72px] lg:w-[390px] lg:shrink-0 lg:text-[96px]">
+      <h2 className="flex w-full flex-col justify-center text-[52px] leading-none font-bold tracking-[-1.92px] sm:text-[72px] lg:w-[390px] lg:shrink-0 lg:text-[96px]">
         {lines.map((line, i) => (
           // The design staggers the lines: the first sits left, the rest right.
           // Placing them at the edges rather than indenting them means a long
@@ -44,7 +44,7 @@ export function SectionHeader({
 
       <div className="flex min-w-0 flex-1 flex-col">
         {eyebrow && (
-          <p className="max-w-[650px] py-2 text-[20px] leading-tight font-bold italic tracking-[-0.4px]">
+          <p className="max-w-[650px] py-2 text-[20px] leading-tight font-bold tracking-[-0.4px]">
             {eyebrow}
           </p>
         )}
@@ -52,8 +52,8 @@ export function SectionHeader({
           <Collapsible.Root open={open} onOpenChange={setOpen}>
             {/* Closed, the paragraph is clipped to two lines rather than hidden,
                 so the section still reads without expanding it. */}
-            <p className={`text-[16px] leading-6 italic ${open ? "" : "line-clamp-2"}`}>{intro}</p>
-            <Collapsible.Trigger className="cursor-pointer py-2 text-[16px] font-bold italic tracking-[-0.32px] underline">
+            <p className={`text-[16px] leading-6 ${open ? "" : "line-clamp-2"}`}>{intro}</p>
+            <Collapsible.Trigger className="cursor-pointer py-2 text-[16px] font-bold tracking-[-0.32px] underline">
               {open ? UI.less[lang] : UI.more[lang]}
             </Collapsible.Trigger>
           </Collapsible.Root>

@@ -8,14 +8,14 @@ export function LanguageSwitch({ lang, className = "" }: { lang: Lang; className
       {LANGS.map((code) => (
         <li key={code}>
           {code === lang ? (
-            <span aria-current="true" className="text-[16px] font-bold italic tracking-[-0.32px] opacity-40">
+            <span aria-current="true" className="text-[16px] font-bold tracking-[-0.32px] opacity-40">
               {code.toUpperCase()}
             </span>
           ) : (
             <Link
               href={`/${code}`}
               hrefLang={code}
-              className="text-[16px] font-bold italic tracking-[-0.32px] underline"
+              className="text-[16px] font-bold tracking-[-0.32px] underline"
             >
               {code.toUpperCase()}
             </Link>

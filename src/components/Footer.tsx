@@ -12,13 +12,13 @@ export function Footer({ settings, lang }: { settings: SiteSettings | null; lang
     <footer className="mt-20 rounded-t-[20px] bg-glass px-6 pt-5 pb-[13px] backdrop-blur-[12px] sm:px-[60px]">
       <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-start">
         <div className="flex w-full max-w-[351px] flex-col gap-1 py-2">
-          <p className="text-[32px] font-bold italic tracking-[-0.64px]">
+          <p className="text-[32px] font-bold tracking-[-0.64px]">
             {settings?.siteName ?? "Ruderal"}
           </p>
-          {blurb && <p className="text-[16px] italic leading-6">{blurb}</p>}
+          {blurb && <p className="text-[16px] leading-6">{blurb}</p>}
           <Link
             href={`/${lang}/about`}
-            className="py-2 text-[16px] font-bold italic tracking-[-0.32px] underline"
+            className="py-2 text-[16px] font-bold tracking-[-0.32px] underline"
           >
             {UI.nav.about[lang]}
           </Link>
@@ -28,7 +28,7 @@ export function Footer({ settings, lang }: { settings: SiteSettings | null; lang
           {settings?.email && (
             <a
               href={`mailto:${settings.email}`}
-              className="text-[22px] font-bold italic tracking-[-0.64px] break-all sm:text-[32px]"
+              className="text-[22px] font-bold tracking-[-0.64px] break-all sm:text-[32px]"
             >
               {settings.email}
             </a>

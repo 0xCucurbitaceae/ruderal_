@@ -45,7 +45,7 @@ export function PodcastPlayer({ podcasts, lang }: { podcasts: Podcast[]; lang: L
             light={autoplay ? false : selected.image ? urlFor(selected.image).width(1200).url() : true}
           />
         </div>
-        <div className="flex w-full items-start justify-between gap-4 text-[16px] font-bold italic">
+        <div className="flex w-full items-start justify-between gap-4 text-[16px] font-bold">
           <span>{t(selected.title, lang)}</span>
           {selected.duration && <span className="shrink-0">{selected.duration}</span>}
         </div>
@@ -74,7 +74,7 @@ export function PodcastPlayer({ podcasts, lang }: { podcasts: Podcast[]; lang: L
                     isSelected ? "ring-2 ring-ink" : ""
                   }`}
                 />
-                <span className="flex w-full items-start justify-between gap-4 text-[14px] leading-[16.748px] font-bold italic">
+                <span className="flex w-full items-start justify-between gap-4 text-[14px] leading-[16.748px] font-bold">
                   <span>{t(podcast.title, lang)}</span>
                   {podcast.duration && <span className="shrink-0">{podcast.duration}</span>}
                 </span>

@@ -14,7 +14,7 @@ const items = (lang: Lang) =>
 
 /**
  * One nav at both sizes. The design stacks the icon above the label on mobile
- * and sets the label upright there, then puts them side by side in italic on
+ * and puts them side by side on
  * desktop — a layout change at the breakpoint, not a second component.
  *
  * The bar spans the full width so the pill can centre in it, but only the pill
@@ -36,7 +36,7 @@ export function Nav({ lang }: { lang: Lang }) {
               className="flex flex-col items-center justify-center gap-[3.429px] py-2 md:flex-row md:items-center"
             >
               <PlantIcon name={icon} />
-              <span className="text-[14px] font-bold tracking-[-0.32px] whitespace-nowrap sm:text-[16px] md:italic">
+              <span className="text-[14px] font-bold tracking-[-0.32px] whitespace-nowrap sm:text-[16px]">
                 {label}
               </span>
             </Link>
