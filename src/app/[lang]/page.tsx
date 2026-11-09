@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { asLang, t } from "@/lib/i18n";
 import { getEvents, getPodcasts, getSiteSettings, type SectionIntro } from "@/lib/sanity";
 import { buildMetadata } from "@/lib/seo";
@@ -9,8 +8,6 @@ import { HappeningCard } from "@/components/HappeningCard";
 import { PodcastPlayer } from "@/components/PodcastPlayer";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Hero } from "@/components/Hero";
-
-import vine from "../../../public/design/vine.png";
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -43,15 +40,6 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <div className="relative overflow-x-clip">
-      {/* Decorative vine running down the right edge (Figma 0:131). */}
-      <Image
-        src={vine}
-        alt=""
-        aria-hidden
-        priority={false}
-        className="pointer-events-none absolute top-[520px] right-[-40px] z-0 hidden w-[300px] max-w-none select-none lg:block"
-      />
-
       <Hero siteName={settings?.siteName ?? "Ruderal"} />
 
       <section id="podcasts" className="relative z-10 flex flex-col items-center gap-[60px] pb-24">
