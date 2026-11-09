@@ -29,6 +29,7 @@ export const UI = {
   where: { en: "Where", fr: "Lieu" },
   deadline: { en: "Subscription date", fr: "Date d'inscription" },
   skipToContent: { en: "Skip to content", fr: "Aller au contenu" },
+  team: { en: "Team", fr: "Équipe" },
 } as const satisfies Record<string, unknown>;
 
 type Leaf = Record<Lang, string>;

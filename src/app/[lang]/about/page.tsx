@@ -5,7 +5,14 @@ import { asLang, t } from "@/lib/i18n";
 import { getPage, getSiteSettings } from "@/lib/sanity";
 import { buildMetadata } from "@/lib/seo";
 import { UI } from "@/i18n/ui";
-import { SanityImage } from "@/components/SanityImage";
+
+const TEAM = [
+  { name: "Alessandra Mattana", role: { en: "Director", fr: "Directrice" } },
+  {
+    name: "Aline van Boetzelaer",
+    role: { en: "Production and Communication", fr: "Production et communication" },
+  },
+] as const;
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -32,25 +39,29 @@ export default async function AboutPage({ params }: Props) {
 
   return (
     <article className="relative mx-auto my-10 w-full max-w-[1151px] px-4">
-        {/* Artwork sitting behind the text (Figma 0:1119). */}
-        <SanityImage
-          image={page?.image}
-          sizes="800px"
-          className="pointer-events-none absolute top-[-164px] left-[93px] -z-10 hidden w-[788px] max-w-none rotate-[0.65deg] select-none lg:block"
-        />
       <div className="glass-panel relative overflow-hidden rounded-l-[12px] px-5 pt-5 pb-[13px]">
 
         <div className="relative flex flex-col gap-[29px]">
-          <h1 className="text-[20px] leading-7 font-bold italic">
+          <h1 className="text-[20px] leading-7 font-bold">
             {eyebrow ?? t(page?.title, lang) ?? UI.nav.about[lang]}
           </h1>
           {body && (
             <div
-              className="text-[20px] leading-7 text-[#141414] italic lg:columns-2 lg:gap-[109px] [&_p]:mb-7 [&_strong]:font-bold"
+              className="text-[20px] leading-7 text-[#141414] lg:columns-2 lg:gap-[109px] [&_p]:mb-7 [&_strong]:font-bold"
             >
               <PortableText value={body} />
             </div>
           )}
+          <section className="text-[20px] leading-7 text-[#141414]">
+            <h2 className="font-bold">{UI.team[lang]}</h2>
+            <ul>
+              {TEAM.map((member) => (
+                <li key={member.name}>
+                  {member.name} — {member.role[lang]}
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </div>
     </article>
