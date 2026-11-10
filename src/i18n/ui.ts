@@ -14,7 +14,7 @@ export const UI = {
    * decision per language.
    */
   sections: {
-    podcasts: { en: ["Podcasts"], fr: ["Podcasts"] },
+    podcasts: { en: ["Podcast"], fr: ["Podcast"] },
     studyGroups: { en: ["Study", "group"], fr: ["Groupe", "d'étude"] },
     // French uses the English word for these.
     happenings: { en: ["Happen", "nings"], fr: ["Happen", "nings"] },
