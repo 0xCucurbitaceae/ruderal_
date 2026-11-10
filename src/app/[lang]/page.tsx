@@ -49,10 +49,9 @@ export default async function HomePage({ params }: Props) {
 
       <section id="study-groups" className="relative z-10 flex flex-col items-center gap-[60px] pb-24">
         {header(UI.sections.studyGroups[lang], settings?.studyGroupsIntro)}
-        {/* The posters run off the right edge as a scrolling row. */}
-        <ul className="flex w-full snap-x scroll-px-6 gap-[42px] overflow-x-auto px-6 pb-4 lg:scroll-px-[80px] lg:px-[80px]">
+        <ul className="mx-auto flex w-full max-w-[1120px] flex-col gap-10 px-6">
           {studyGroups.map((event) => (
-            <li key={event._id} className="w-[85vw] max-w-[311.75px] shrink-0 snap-start sm:w-[311.75px]">
+            <li key={event._id}>
               <EventCard event={event} lang={lang} />
             </li>
           ))}
