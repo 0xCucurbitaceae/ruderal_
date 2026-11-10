@@ -31,7 +31,10 @@ export function SectionHeader({
 
   return (
     <div className="glass-panel flex w-full flex-col gap-6 rounded-r-[20px] px-6 pt-5 pb-[13px] lg:flex-row lg:items-center lg:gap-[60px] lg:px-20">
-      <h2 className="flex w-full flex-col justify-center text-[52px] leading-none font-bold tracking-[-1.92px] sm:text-[72px] lg:w-[390px] lg:shrink-0 lg:text-[96px]">
+      {/* Below lg the heading sits on its own row; w-fit keeps it only as wide
+          as its longest line, so the staggered lines stay together instead of
+          spreading to the panel's edges. */}
+      <h2 className="flex w-fit flex-col justify-center text-[47px] leading-none font-bold tracking-[-1.73px] sm:text-[65px] lg:w-[390px] lg:shrink-0 lg:text-[86px]">
         {lines.map((line, i) => (
           // The design staggers the lines: the first sits left, the rest right.
           // Placing them at the edges rather than indenting them means a long
