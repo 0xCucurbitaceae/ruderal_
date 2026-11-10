@@ -21,14 +21,25 @@ const items = (lang: Lang) =>
  * itself is there to be clicked — otherwise the invisible half of the bar
  * swallows clicks meant for whatever shares its row, the language switch first
  * of all.
+ *
+ * The "Ruderal" home button rides in the same sticky bar so it stays pinned
+ * too. From lg up it sits at the left edge of the pill's row, mirroring the
+ * language switch on the right; narrower, the centred pill would overlap it, so
+ * the button takes its own row above the pill, opposite the language switch.
  */
 export function Nav({ lang }: { lang: Lang }) {
   return (
     <nav
       aria-label="Main"
-      className="pointer-events-none sticky top-5 z-50 flex justify-center px-4"
+      className="pointer-events-none sticky top-5 z-50 flex flex-col items-start gap-2 px-4 lg:flex-row lg:justify-center"
     >
-      <ul className="glass-panel pointer-events-auto flex w-full max-w-[430px] items-start justify-between rounded-[12px] px-2 py-3 md:w-auto md:max-w-none md:gap-2 md:px-5">
+      <Link
+        href={`/${lang}`}
+        className="glass-panel pointer-events-auto rounded-[12px] px-5 py-3 lg:absolute lg:top-0 lg:left-6"
+      >
+        <span className="block py-2 text-[16px] leading-6 font-bold tracking-[-0.32px]">Ruderal</span>
+      </Link>
+      <ul className="glass-panel pointer-events-auto flex w-full self-center max-w-[430px] items-start justify-between rounded-[12px] px-2 py-3 md:w-auto md:max-w-none md:gap-2 md:px-5">
         {items(lang).map(({ href, label, icon }) => (
           <li key={href} className="min-w-0 flex-1 md:w-auto md:flex-none">
             <Link
